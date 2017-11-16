@@ -5,11 +5,9 @@ var bodyParser = require ('body-parser');
 
 // set up express
 var app = express();
-var PORT = process.env.PORT || 8080;
-
-// serve static content and set up body-parser
-app.use(express.static('public'));
+app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
 
 // set up handlebars
 var exphbs = require("express-handlebars");
@@ -19,8 +17,12 @@ app.set("view engine", "handlebars");
 // import routes
 var routes = require("./controllers/burgers_controller.js");
 app.use("/", routes);
+app.use("/update", routes);
+app.use("/create", routes);
 
 // start listening!
-app.listen(PORT, function() {
-	console.log("app is listening on port " + PORT);
-});
+var port = process.env.PORT || 8080;
+  app.listen(port);
+  console.log("Listening on port " + port);
+
+console.log(module.exports);

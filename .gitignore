@@ -1,3 +1,6 @@
+# Passwords
+connection.password
+
 # Logs
 logs
 *.log
