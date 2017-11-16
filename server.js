@@ -5,6 +5,8 @@ var bodyParser = require ('body-parser');
 
 // set up express
 var app = express();
+var PORT = process.env.PORT || 8080;
+
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
@@ -21,8 +23,8 @@ app.use("/update", routes);
 app.use("/create", routes);
 
 // start listening!
-var port = process.env.PORT || 8080;
-  app.listen(port);
-  console.log("Listening on port " + port);
+app.listen(PORT, function() {
+	console.log("app is listening on port " + PORT);
+});
 
-console.log(module.exports);
+// console.log(module.exports);
